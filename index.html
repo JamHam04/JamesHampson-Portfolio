@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>James Hampson | Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+   :root {
+    --accent: #00b7ff;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #000;
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .navbar ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 10px 0;
+      margin: 0;
+      gap: 30px;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+    }
+
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/hero-static2.png') center center / cover no-repeat;
+      filter: brightness(0.45); 
+      z-index: 1;
+      animation: heroSubtleZoom 20s infinite alternate;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #00b7ff, #00ffd4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowPulse 2.5s infinite alternate;
+    }
+
+    .hero p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #ccc;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .open-badge {
+      background: rgba(0, 183, 255, 0.12);
+      border: 1px solid rgba(0, 183, 255, 0.35);
+      color: var(--accent);
+    }
+
+    /* Background zoom */
+    @keyframes heroSubtleZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+
+    /* Project Showcase */
+    .projects {
+      background: linear-gradient(to bottom, #000, #111);
+    } 
+    .projects,
+    .contact {
+      box-shadow: inset 0 0 60px rgba(0, 255, 255, 0.05);
+    }
+
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .project {
+      background: #1a1a1a;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project video {
+      width: 100%;
+      aspect-ratio: 16 / 9;  
+      height: auto;         
+      object-fit: contain;  
+      background: #000;      
+      display: block;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+
+    .project-info {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .project-info h3 {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .project-info p {
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .project:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(0, 183, 255, 0.15);
+    }
+
+
+    @media (max-width: 800px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Tech tags */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tech-tags div {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .tech-tags div:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .project-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--accent);
+      display: inline-block;
+    }
+    .project-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .project-links a {
+      color: var(--accent);
+      font-size: 1.3rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .project-links a:hover {
+      transform: scale(1.1);
+      color: #fff;
+    }
+
+    /* highlight bullet */
+    .highlight-bullet {
+      background: rgba(0, 183, 255, 0.08);
+      border-left: 2px solid var(--accent);
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-top: 10px;
+      color: #b0e8ff;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* VR Collaborations */
+    .vr-experience {
+      position: relative;
+      padding: 0;
+      text-align: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+
+    .vr-video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 400px; 
+      overflow: hidden;
+    }
+
+    .vr-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+
+    .vr-header {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #00b7ff; 
+      font-size: 3rem; 
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap; 
+      background: linear-gradient(90deg, #00b7ff, #00ffd4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowPulse 2.5s infinite alternate;
+    }
+
+    .vr-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      padding: 20px;
+      max-width: 600px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,0.3);
+      border-radius: 16px;
+    }
+
+    .vr-overlay p {
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    /* About Section */
+    .about p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .about {
+      position: relative;
+    }
+
+    .about-box {
+      display: inline-block;
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px 50px;
+      max-width: 650px;
+      margin: 0 auto;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .about-box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 60px rgba(255, 255, 255, 0.1);
+    }
+
+    .about-box p {
+      color: #ddd;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* Tech Stack */
+    .skill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .skill-grid div {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: var(--accent);
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    .skill-grid div:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .skill-category {
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 20px;
+      margin-bottom: -5px;
+    }
+
+    .socials a {
+      color: var(--accent);
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    .socials i {
+      font-size: 72px; /* control size here */
+    }
+
+    .socials a:hover {
+      color: #fff;
+    }
+    /* Parallax Divider */
+    .parallax-divider {
+      position: relative;
+      height: 600px;
+      overflow: hidden;
+      background-image: url("images/parallax-bottom2.png");
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    .parallax-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 100px; 
+    }
+
+    .parallax-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .parallax-content h2 {
+      font-size: 2rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, var(--accent), #00ffd4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowPulse 2.5s infinite alternate;
+    }
+
+    .about-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("textures/noise.png");
+      opacity: 0.05;
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .divider {
+      width: 70px;
+      height: 3px;
+      background: #ffffff;
+      margin: 14px auto 28px;
+      border-radius: 3px;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+  @keyframes pulseGlow {
+    from {
+      box-shadow: 0 0 8px var(--accent);
+    }
+    to {
+      box-shadow: 0 0 18px var(--accent);
+    }
+  }
+
+
+    @keyframes pulseGlow {
+      from {
+        box-shadow: 0 0 8px #00ffff;
+      }
+      to {
+        box-shadow: 0 0 18px #00ffff;
+      }
+    }
+
+
+    .cv-button,
+    button {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      padding: 12px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cv-button:hover,
+    button:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 12px var(--accent);
+    }
+
+
+    /* Contact Section */
+    .contact {
+      background: #111;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      background: #222;
+      border: 1px solid #333;
+      color: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #fff;
+      color: #000;
+      font-weight: 600;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    footer {
+      padding: 20px;
+      background: #000;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    /* Scroll Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar">
+  <ul>
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About Me</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>James Hampson</h1>
+    <p>Software Developer | Computer Science Graduate 2026</p>
+    <div class="hero-badges">
+      <span class="hero-badge open-badge">&#x25cf; Open to graduate roles</span>
+      <span class="hero-badge">C# &amp; C++</span>
+      <span class="hero-badge">Unity &amp; OpenGL</span>
+      <span class="hero-badge">Android &amp; Firebase</span>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="projects" data-animate id="projects">
+  <h2>Projects</h2>
+  <div class="project-grid">
+
+    <div class="project">
+      <video autoplay loop muted playsinline>
+        <source src="videos/project3.mp4" type="video/mp4" />
+      </video>
+      <div class="project-info">
+        <div class="project-header">
+          <h3>Stampede — Mobile Racing App</h3>
+          <div class="project-links">
+            <a href="https://github.com/JamHam04/Stampede" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <p>
+          Delivered a GPS racing game to a real client as part of a 4-person Agile team. Engineered the core location system using Android GPS APIs, built a custom map tile renderer from open-source geodata removing third-party dependencies, and integrated Firebase Auth &amp; Realtime Database for live matchmaking and leaderboards.
+        </p>
+        <div class="highlight-bullet">
+          &#x2605; Real client delivery &mdash; coordinated full stack from spec to handoff in a 4-person team
+        </div>
+        <div class="tech-tags">
+          <div>Java</div>
+          <div>Android Studio</div>
+          <div>Firebase</div>
+          <div>GPS APIs</div>
+          <div>Agile/Scrum</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <video autoplay loop muted playsinline>
+        <source src="videos/project6.mp4" type="video/mp4" />
+      </video>
+      <div class="project-info">
+        <div class="project-header">
+          <h3>3D Graphics Engine</h3>
+          <div class="project-links">
+            <a href="https://github.com/JamHam04/COMP3016_Coursework2" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <p>
+          Built a real-time 3D rendering pipeline from scratch in C++ and OpenGL. Authored custom GLSL vertex and fragment shaders with Phong/Blinn-Phong lighting, implemented OBJ model loading with UV texture mapping, and built a first-person camera using matrix-based view and projection transforms.
+        </p>
+        <div class="highlight-bullet">
+          &#x2605; Full rendering pipeline written from scratch &mdash; no game engine
+        </div>
+        <div class="tech-tags">
+          <div>C++</div>
+          <div>OpenGL 4.x</div>
+          <div>GLSL</div>
+          <div>GLAD</div>
+          <div>ASSIMP</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <video autoplay loop muted playsinline>
+        <source src="videos/project2.mp4" type="video/mp4" />
+      </video>
+      <div class="project-info">
+        <div class="project-header">
+          <h3>Terminal Tower Defence</h3>
+          <div class="project-links">
+            <a href="https://github.com/JamHam04/COMP3016_TowerDefence" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://jam-ham.itch.io/terminal-tower-defence" target="_blank"><i class="fa-brands fa-itch-io"></i></a>
+          </div>
+        </div>
+        <p>
+          A tower defence game built entirely in C++ with SDL2, featuring a custom game loop, tower upgrade trees, distinct enemy types, and dynamic environmental hazards. No engine — all architecture hand-rolled.
+        </p>
+        <div class="highlight-bullet">
+          &#x2605; Custom game loop architecture and state management in pure C++
+        </div>
+        <div class="tech-tags">
+          <div>C++</div>
+          <div>SDL2</div>
+          <div>Game Loop Architecture</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <video autoplay loop muted playsinline>
+        <source src="videos/project5.mp4" type="video/mp4" />
+      </video>
+      <div class="project-info">
+        <div class="project-header">
+          <h3>HoloPrompt — XR Mixed Reality App</h3>
+          <div class="project-links">
+            <a href="https://github.com/JamHam04/HoloPrompt" target="_blank"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <p>
+          A mixed reality teleprompter overlaying scripts in immersive XR space for hands-free presentation. Integrated Firebase for script storage and sync, with a modular C# architecture separating UI, data, and XR interaction layers.
+        </p>
+        <div class="highlight-bullet">
+          &#x2605; Modular architecture &mdash; decoupled UI, data layer, and XR interaction
+        </div>
+        <div class="tech-tags">
+          <div>Unity</div>
+          <div>C#</div>
+          <div>Firebase</div>
+          <div>XR Toolkit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <video autoplay loop muted playsinline>
+        <source src="videos/project4.mp4" type="video/mp4" />
+      </video>
+      <div class="project-info">
+        <div class="project-header">
+          <h3>Polaris VR — Spatial Puzzle Game</h3>
+        </div>
+        <p>
+          A VR spatial puzzle game built in Unity with custom 6DOF controller interaction using the XR Toolkit. Architected a modular grid-based puzzle system decoupling level layout from interaction logic, enabling rapid scene iteration without rewriting game rules.
+        </p>
+        <div class="highlight-bullet">
+          &#x2605; Modular grid system &mdash; level data fully decoupled from game logic
+        </div>
+        <div class="tech-tags">
+          <div>Unity</div>
+          <div>C#</div>
+          <div>OpenXR</div>
+          <div>XR Toolkit</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="project">
+      <video autoplay loop muted playsinline>
+        <source src="videos/project1.mp4" type="video/mp4" />
+      </video>
+      <div class="project-info">
+        <div class="project-header">
+          <h3>Drunken Day — 3D Platformer</h3>
+          <div class="project-links">
+            <a href="https://github.com/JamHam04/DrunkenDay" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://jam-ham.itch.io/drunkenday" target="_blank"><i class="fa-brands fa-itch-io"></i></a>
+          </div>
+        </div>
+        <p>
+          A 3D platformer in Unity featuring physics-based character movement. Players navigate dynamic environments with rivers, traffic, and obstacles — built to explore Unity's physics system and character controller patterns.
+        </p>
+        <div class="tech-tags">
+          <div>Unity</div>
+          <div>C#</div>
+          <div>Physics Systems</div>
+          <div>3D Game Design</div>
+        </div>
+      </div>
+    </div> -->
+
+  </div>
+</section>
+
+<!-- VR Experience Section -->
+<!-- <section class="vr-experience" data-animate>
+  <div class="vr-video-wrapper">
+    <video autoplay loop muted playsinline class="vr-video">
+      <source src="videos/vr-collaboration-loop2.mp4" type="video/mp4">
+    </video>
+
+    <h2 class="vr-header">VR Collaborations &amp; Experience</h2>
+
+    <div class="vr-overlay">
+      <p>
+        Hands-on experience with VR development and early access testing, 
+        collaborating with developers to explore immersive gameplay.
+      </p>
+    </div>
+  </div>
+</section> -->
+
+<!-- About -->
+<section class="about" data-animate id="about">
+  <div class="about-box">
+    <h2>About Me</h2>
+    <div class="divider"></div>
+    <p>
+      I'm a final-year Computer Science student at the University of Plymouth (expected First / high 2:1, May 2026) with hands-on experience across the full stack — from custom OpenGL rendering pipelines and C++ game architecture to mobile GPS engines and real-time Firebase backends.
+    </p>
+    <p>
+      I enjoy building things from the ground up: whether that's a rendering pipeline, a native Android location system, or a modular interaction framework in Unity. I'm comfortable working independently and in teams, and have delivered production-ready software to a real client.
+    </p>
+    <a href="files/CV.pdf" target="_blank" class="cv-button">View CV</a>
+  </div>
+</section>
+
+<section class="skills" data-animate>
+  <h2>Technical Skills</h2>
+  <div class="skill-grid">
+    <div class="skill-category">Languages</div>
+    <div>C#</div>
+    <div>C++</div>
+    <div>Java</div>
+    <div>Python</div>
+    <div>GLSL</div>
+
+    <div class="skill-category">Frameworks &amp; Tools</div>
+    <div>Unity &amp; XR Toolkit</div>
+    <div>OpenGL 4.x</div>
+    <div>Android SDK</div>
+    <div>Firebase</div>
+    <div>SDL2</div>
+    <div>Git</div>
+    <div>Docker</div>
+    <div>RESTful APIs</div>
+    <div>SQL</div>
+
+    <div class="skill-category">Concepts</div>
+    <div>OOP &amp; Design Patterns</div>
+    <div>Data Structures &amp; Algorithms</div>
+    <div>Agile / Scrum</div>
+    <div>Real-time Rendering</div>
+    <div>Client Delivery</div>
+  </div>
+</section>
+
+<!-- Parallax Divider -->
+<section class="parallax-divider">
+  <div class="parallax-content"></div>
+</section>
+
+<!-- Contact -->
+<section class="contact" data-animate id="contact">
+  <h2>Get In Touch</h2>
+  <!-- <form>
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Your Email" required />
+    <textarea rows="4" placeholder="Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form> -->
+  <div class="socials">
+    <a href="https://github.com/JamHam04" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/jameshhampson/" target="_blank"><i class="fab fa-linkedin"></i></a>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> by James Hampson</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const elements = document.querySelectorAll("[data-animate]");
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    },
+    { threshold: 0.1 }
+  );
+  elements.forEach(el => observer.observe(el));
+  
+  const parallaxSection = document.querySelector('.parallax-divider');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const sectionTop = parallaxSection.offsetTop;
+    const sectionHeight = parallaxSection.offsetHeight;
+    if (scrollTop + window.innerHeight > sectionTop && scrollTop < sectionTop + sectionHeight) {
+      const relativeScroll = scrollTop - sectionTop;
+      parallaxSection.style.backgroundPosition = `center ${relativeScroll * 0.5}px`;
+    }
+  });
+</script>
+</body>
+</html>
